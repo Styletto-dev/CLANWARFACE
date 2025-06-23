@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clan Warface - Armamentos</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- SQL.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/sql-wasm.js"></script>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <h1>Clan Warface</h1>
+                </div>
+                <button class="menu-toggle" aria-label="Abrir menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <nav class="main-menu">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="emblemas.html">Emblemas</a></li>
+                        <li><a href="armas.html">Armamentos</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <section class="weapons-section">
+        <div class="container">
+            <h2>Banco de Armamentos</h2>
+            
+            <div class="search-filter">
+                <div class="search-box">
+                    <input type="text" id="weaponSearch" placeholder="Pesquisar armas...">
+                    <button id="searchWeaponBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                        </svg>
+                        Buscar
+                    </button>
+                </div>
+            </div>
+            
+            <div class="weapons-layout">
+                <!-- Filtros de Categoria -->
+                <div class="categories-sidebar">
+                    <h3>Categorias</h3>
+                    <div class="category-filter">
+                        <button class="category-btn active" data-category="all">Todos</button>
+                        <button class="category-btn" data-category="fuzil">Fuzil</button>
+                        <button class="category-btn" data-category="smg">SMG</button>
+                        <button class="category-btn" data-category="espingarda">Espingarda</button>
+                        <button class="category-btn" data-category="mr">MR</button>
+                        <button class="category-btn" data-category="sr">SR</button>
+                        <button class="category-btn" data-category="lmg">LMG</button>
+                    </div>
+                    
+                    <!-- Formulário para adicionar nova arma -->
+                    <div class="add-weapon-form">
+                        <h3>Adicionar Loadout</h3>
+                        <form id="weaponForm">
+                            <div class="form-group">
+                                <label for="weaponName">Nome da Arma:</label>
+                                <input type="text" id="weaponName" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="weaponCategory">Categoria:</label>
+                                <select id="weaponCategory" required>
+                                    <option value="">Selecione...</option>
+                                    <option value="fuzil">Fuzil</option>
+                                    <option value="smg">SMG</option>
+                                    <option value="espingarda">Espingarda</option>
+                                    <option value="mr">MR</option>
+                                    <option value="sr">SR</option>
+                                    <option value="lmg">LMG</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="weaponImage">URL da Imagem (sem fundo):</label>
+                                <input type="text" id="weaponImage" placeholder="https://..." required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="weaponLoadout">Código do Loadout:</label>
+                                <input type="text" id="weaponLoadout" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="weaponDamage">Dano:</label>
+                                <input type="number" id="weaponDamage" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="weaponRange">Alcance (m):</label>
+                                <input type="number" id="weaponRange" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="weaponControl">Controle:</label>
+                                <input type="number" id="weaponControl" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="weaponHandling">Manuseio:</label>
+                                <input type="number" id="weaponHandling" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="weaponStability">Estabilidade:</label>
+                                <input type="number" id="weaponStability" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="weaponAccuracy">Precisão:</label>
+                                <input type="number" id="weaponAccuracy" required>
+                            </div>
+                            
+                            <button type="submit" class="submit-btn" id="submitWeaponBtn">
+                                <span id="btnText">Adicionar Loadout</span>
+                                <span id="btnLoader" class="loading"></span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Grid de Armamentos -->
+                <div class="weapons-container" id="weaponsContainer">
+                    <!-- As armas serão carregadas aqui dinamicamente -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script src="weaponsDB.js"></script>
+</body>
+</html>
