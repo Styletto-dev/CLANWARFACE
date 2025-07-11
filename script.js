@@ -10,53 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    // Sistema de busca e filtro (só na página de emblemas)
-    if (document.querySelector('.emblems-section')) {
-        const searchInput = document.getElementById('searchInput');
-        const searchButton = document.getElementById('searchButton');
-        const categoryButtons = document.querySelectorAll('.category-btn');
-        const emblemCards = document.querySelectorAll('.emblem-card');
-        
-        // Função de filtro
-        function filterEmblems() {
-            const searchTerm = searchInput.value.toLowerCase();
-            const activeCategory = document.querySelector('.category-btn.active').dataset.category;
-            
-            emblemCards.forEach(card => {
-                const title = card.querySelector('h3').textContent.toLowerCase();
-                const description = card.textContent.toLowerCase();
-                const category = card.dataset.category;
-                
-                const matchesSearch = title.includes(searchTerm) || description.includes(searchTerm);
-                const matchesCategory = activeCategory === 'all' || category === activeCategory;
-                
-                if (matchesSearch && matchesCategory) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        }
-        
-        // Event listeners
-        searchButton.addEventListener('click', filterEmblems);
-        searchInput.addEventListener('keyup', (e) => {
-            if (e.key === 'Enter') filterEmblems();
-        });
-        
-        categoryButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                categoryButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                filterEmblems();
-            });
-        });
-        
-        // Filtro inicial
-        filterEmblems();
-    }
-    
-    // Efeito de partículas
+    // Efeito de partÃ­culas
     function createParticles() {
         const particlesContainer = document.getElementById('particles');
         const particleCount = 50;
@@ -65,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const particle = document.createElement('div');
             particle.classList.add('particle');
             
-            // Posição aleatória
             const posX = Math.random() * 100;
             const delay = Math.random() * 15;
             const duration = 10 + Math.random() * 20;
@@ -84,6 +37,106 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    // Inicializar partículas
     createParticles();
+    
+    // FormulÃ¡rio de inscriÃ§Ã£o com webhook
+    const applicationForm = document.getElementById('application-form');
+    const modal = document.getElementById('modal');
+    const closeModal = document.querySelector('.close-modal');
+    
+    async function sendToDiscordWebhook(data) {
+        const webhookURL = 'https://discord.com/api/webhooks/1392999008787632350/HRkS4luRYnP_YA3plAk9yGJmdEMZyetTu63Bdm7k-JEUch8BdhlX0_zvc7FjY5PIYW-'; // Substitua pelo seu webhook
+        
+        try {
+            const response = await fetch(webhookURL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    content: "ðŸ“¢ Nova inscriÃ§Ã£o no Clan Warface!",
+                    embeds: [
+                        {
+                            title: "Novo Recruta",
+                            color: 0x6495ED,
+                            fields: [
+                                {
+                                    name: "ðŸ“± WhatsApp",
+                                    value: `+${data.whatsapp}`,
+                                    inline: true
+                                },
+                                {
+                                    name: "ðŸŽ® Discord",
+                                    value: data.discord || "NÃ£o informado",
+                                    inline: true
+                                }
+                            ],
+                            timestamp: new Date().toISOString(),
+                            footer: {
+                                text: "Clan Warface Recrutamento"
+                            }
+                        }
+                    ]
+                }),
+            });
+
+            return response.ok;
+        } catch (error) {
+            console.error('Erro:', error);
+            return false;
+        }
+    }
+
+    if (applicationForm) {
+        applicationForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = applicationForm.querySelector('.submit-btn');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = 'Enviando...';
+            submitBtn.disabled = true;
+            
+            const formData = {
+                discord: document.getElementById('discord').value,
+                whatsapp: document.getElementById('whatsapp').value.replace(/\D/g, '') // Remove nÃ£o-numÃ©ricos
+            };
+            
+            try {
+                const success = await sendToDiscordWebhook(formData);
+                
+                if (success) {
+                    modal.style.display = 'block';
+                    applicationForm.reset();
+                } else {
+                    alert('Ocorreu um erro ao enviar. Por favor, entre em contato diretamente pelo Discord.');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Erro ao processar o formulÃ¡rio.');
+            } finally {
+                submitBtn.textContent = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
+    }
+    
+    if (closeModal) {
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    }
+    
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+    
+    // ValidaÃ§Ã£o do WhatsApp
+    const whatsappInput = document.getElementById('whatsapp');
+    if (whatsappInput) {
+        whatsappInput.addEventListener('input', (e) => {
+            e.target.value = e.target.value.replace(/\D/g, '');
+        });
+    }
 });
