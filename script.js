@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModal = document.querySelector('.close-modal');
     
     async function sendToDiscordWebhook(data) {
-        const webhookURL = 'https://discord.com/api/webhooks/1392999008787632350/HRkS4luRYnP_YA3plAk9yGJmdEMZyetTu63Bdm7k-JEUch8BdhlX0_zvc7FjY5PIYW-'; // Substitua pelo seu webhook
+        const webhookURL = 'https://discord.com/api/webhooks/1392999008787632350/HRkS4luRYnP_YA3plAk9yGJmdEMZyetTu63Bdm7k-JEUch8BdhlX0_zvc7FjY5PIYW-H'; // Substitua pelo seu webhook
         
         try {
             const response = await fetch(webhookURL, {
