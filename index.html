@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clan Warface - Sobre Nós</title>
+    <title>Clan Warface - Recrutamento</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="particles" id="particles"></div>
@@ -22,9 +23,9 @@
                 </button>
                 <nav class="main-menu">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="emblemas.html">Emblemas</a></li>
-                        <li><a href="armas.html">Armas</a></li>
+                        <li><a href="index.html">Recrutamento</a></li>
+                        <li><a href="membros.html">Membros</a></li>
+                        <li><a href="https://discord.gg/m4NAta77cZ" target="_blank"><i class="fab fa-discord"></i> Discord</a></li>
                     </ul>
                 </nav>
             </div>
@@ -33,34 +34,68 @@
     
     <section class="hero">
         <div class="container">
-            <!-- Logo e descrição do site -->
             <div class="site-info">
                 <img src="images/logo.png" alt="Logo Clan Warface" class="site-logo">
-                <p class="beta-notice">🌟 Site em Beta - Delta Force Mobile Helper 🌟</p>
-                <p class="site-description">Este site foi criado para ajudar jogadores do nosso clan com dúvidas sobre o jogo. Atualmente, temos apenas a área de emblemas disponível.</p>
+                <p class="beta-notice"> Site Oficial - Clan Warface </p>
+                <p class="site-description">Bem-vindo ao site oficial do Clan Warface. Juntos somos mais fortes!</p>
             </div>
 
-            <h2>🔥 RECRUTAMENTO ABERTO – CLAN WARFACE 🔥</h2>
+            <h2> RECRUTAMENTO ABERTO - CLAN WARFACE </h2>
             
             <div class="clan-intro">
-                <p>Tá procurando um clã ativo, competitivo e com gente parceira? Então você achou o lugar certo! O Clan Warface está recrutando novos membros!</p>
+                <p>Procurando um clã ativo, competitivo e com uma comunidade unida? O Clan Warface está recrutando novos membros para fortalecer nosso time!</p>
 
-                <h3>📌 Requisitos:</h3>
+                <div class="social-links">
+                    <a href="https://discord.gg/m4NAta77cZ" target="_blank" class="social-btn discord"><i class="fab fa-discord"></i> Discord</a>
+                    <a href="https://tiktok.com/@wfxsky" target="_blank" class="social-btn tiktok"><i class="fab fa-tiktok"></i> TikTok</a>
+                    <a href="#recruit-form" class="social-btn whatsapp"><i class="fab fa-whatsapp"></i> Recrutamento</a>
+                </div>
+
+                <h3> Requisitos:</h3>
                 <ul>
-                    <li>Usar a tag do clã</li>
-                    <li>Ser ativo no jogo e no Discord</li>
-                    <li>Respeitar os outros jogadores</li>
-                    <li>Participar dos eventos e treinos</li>
-                    <li>Assim que entrar Envie seu nick no grupo</li>
+                    <li>Usar a tag [WF] no jogo</li>
+                    <li>Atividade no jogo e no grupo</li>
+                    <li>Respeito a todos os membros</li>
+                    <li>Participação em eventos semanais</li>
+                    <li>Disponibilidade para treinos</li>
                 </ul>
 
-                <h3>📣 Quer entrar?</h3>
-                <p>É só colar no nosso Grupo do WhatsApp e trocar uma ideia com a staff. Vem com a gente fortalecer o time!</p>
-                <a href="https://chat.whatsapp.com/KvuUk20aMKzEGLrbI70Tu3?mode=r_c" target="_blank" class="submit-btn">Entrar no Grupo do WhatsApp</a>
+                <div id="recruit-form" class="recruit-form">
+                    <h3> Formulário de Inscrição</h3>
+                    <form id="application-form">
+                        <div class="form-group">
+                            <label for="discord">Seu Nick do Discord:</label>
+                            <input type="text" id="discord" name="discord" placeholder="Ex: usuario#1234" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="whatsapp">Seu WhatsApp (com DDD):</label>
+                            <input type="tel" id="whatsapp" name="whatsapp" placeholder="Ex: 5511999999999" required>
+                            <small class="hint">Apenas números, com código do país (ex: 55 para Brasil)</small>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Enviar Inscrição</button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
 
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Inscrição Recebida!</h3>
+            <p>Obrigado por se inscrever no Clan Warface!</p>
+            <p>Nossa equipe entrará em contato em breve pelo WhatsApp fornecido.</p>
+            <p>Entre no grupo do WhatsApp e envie as seguintes informações</p>
+            <p>• Voce e casual ou competitivo?<p>
+            <p>• Qual horario disponível para jogar?<p>
+            <a href="https://discord.gg/m4NAta77cZ" target="_blank" class="submit-btn discord-btn">
+                <i class="fab fa-whatsapp"></i> Entrar no Grupo WhatsApp 
+            </a>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
-</html>
+    </html>
